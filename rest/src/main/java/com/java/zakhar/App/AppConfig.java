@@ -1,0 +1,46 @@
+package com.java.zakhar.app;
+
+import com.java.zakhar.datastorage.DataStorage;
+import com.java.zakhar.datastorage.IDataStorage;
+import com.java.zakhar.ioservice.FileSystemIoService;
+import com.java.zakhar.ioservice.IIoService;
+import com.java.zakhar.services.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.nio.file.FileSystemException;
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    IIoService getIoService() throws FileSystemException {
+        String folderPath = "D:\\KursData";
+        FileSystemIoService ioService = new FileSystemIoService(folderPath);
+        ioService.ensureFolderExist();
+        return ioService;
+    }
+
+    @Bean
+    IDataStorage getDataStorage(final IIoService ioService) throws Exception {
+        DataStorage dataStorage = new DataStorage(ioService);
+        dataStorage.loadAll();
+        return dataStorage;
+    }
+
+    @Bean
+    IEquipmentService getEquipmentService(final IDataStorage dataStorage) {
+        return new EquipmentService(dataStorage);
+    }
+
+    @Bean
+    IProjectService getProjectService(final IDataStorage dataStorage) {
+        return new ProjectService(dataStorage);
+    }
+
+    @Bean
+    IStudentService getStudentService(final IDataStorage dataStorage) {
+        return new StudentService(dataStorage);
+    }
+
+}
