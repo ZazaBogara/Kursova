@@ -1,9 +1,9 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.DataStorage.*;
-import com.java.zakhar.Services.DataObject.Project;
-import com.java.zakhar.Services.DataObject.ProjectEquipment;
-import com.java.zakhar.Services.DataObject.ProjectStudent;
+import com.java.zakhar.datastorage.*;
+import com.java.zakhar.services.dataobject.Project;
+import com.java.zakhar.services.dataobject.ProjectEquipment;
+import com.java.zakhar.services.dataobject.ProjectStudent;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public class ProjectService implements IProjectService {
-    IDataStorage dataStorage;
+    private IDataStorage dataStorage;
 
 
     private List<ProjectEquipment> loadProjectEquipments(int projectID) {
@@ -65,7 +65,6 @@ public class ProjectService implements IProjectService {
     }
 
     private void updateProjectEquipments(int projectID, List<ProjectEquipment> equipments) throws IOException {
-        // get existing projects
         HashMap<Integer, ProjectEquipmentItem> existingProjects = new HashMap<>();
         for (ProjectEquipmentItem projectEquipmentItem : dataStorage.getProjectEquipments().getItems()) {
             if (projectEquipmentItem.getProjectID() == projectID) {
@@ -73,7 +72,6 @@ public class ProjectService implements IProjectService {
             }
         }
         boolean wasModified = false;
-        // update projects
         for (ProjectEquipment equip : equipments) {
             ProjectEquipmentItem existingItem = existingProjects.get(equip.getID());
             if (existingItem != null) {
@@ -87,18 +85,15 @@ public class ProjectService implements IProjectService {
                 wasModified = true;
             }
         }
-        // remove unused
         for (ProjectEquipmentItem projectEquipmentItem : existingProjects.values()) {
             dataStorage.getProjectEquipments().deleteItem(projectEquipmentItem.getId());
             wasModified = true;
         }
-        //
         if (wasModified)
             dataStorage.getProjectEquipments().save();
     }
 
     private void updateProjectStudents(int projectID, List<ProjectStudent> students) throws IOException {
-        // get existing projects
         HashMap<Integer, StudentProjectItem> existingProjects = new HashMap<>();
         for (StudentProjectItem studentProjectItem : dataStorage.getStudentProjects().getItems()) {
             if (studentProjectItem.getProjectID() == projectID) {
@@ -106,7 +101,6 @@ public class ProjectService implements IProjectService {
             }
         }
         boolean wasModified = false;
-        // update projects
         for (ProjectStudent stud : students) {
             StudentProjectItem existingItem = existingProjects.get(stud.getID());
             if (existingItem != null) {
@@ -120,12 +114,10 @@ public class ProjectService implements IProjectService {
                 wasModified = true;
             }
         }
-        // remove unused
         for (StudentProjectItem studentProjectItem : existingProjects.values()) {
             dataStorage.getStudentProjects().deleteItem(studentProjectItem.getId());
             wasModified = true;
         }
-        //
         if (wasModified)
             dataStorage.getStudentProjects().save();
     }

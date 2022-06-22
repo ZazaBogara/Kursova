@@ -1,6 +1,6 @@
 package com.java.zakhar.helpers;
 
-import com.java.zakhar.IOService.IIoService;
+import com.java.zakhar.ioservice.IIoService;
 
 import java.io.*;
 import java.nio.charset.Charset;

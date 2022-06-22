@@ -1,13 +1,13 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.DataStorage.IDataStorage;
-import com.java.zakhar.DataStorage.ProjectEquipmentItem;
-import com.java.zakhar.DataStorage.ProjectItem;
-import com.java.zakhar.DataStorage.StudentProjectItem;
-import com.java.zakhar.IOService.IIoService;
-import com.java.zakhar.Services.DataObject.Project;
-import com.java.zakhar.Services.DataObject.ProjectEquipment;
-import com.java.zakhar.Services.DataObject.ProjectStudent;
+import com.java.zakhar.datastorage.IDataStorage;
+import com.java.zakhar.datastorage.ProjectEquipmentItem;
+import com.java.zakhar.datastorage.ProjectItem;
+import com.java.zakhar.datastorage.StudentProjectItem;
+import com.java.zakhar.ioservice.IIoService;
+import com.java.zakhar.services.dataobject.Project;
+import com.java.zakhar.services.dataobject.ProjectEquipment;
+import com.java.zakhar.services.dataobject.ProjectStudent;
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 import com.java.zakhar.helpers.InMemIoService;
 import org.junit.jupiter.api.Test;
@@ -51,7 +51,7 @@ public class ProjectsTests {
         expectedEquipments.add(new ProjectEquipment(2, 1, "Eq1", 2));
         expectedEquipments.add(new ProjectEquipment(4, 2, "Eq2", 1));
         List<ProjectStudent> expectedStudents = new ArrayList<>();
-        expectedStudents.add(new ProjectStudent(2, 1, "John", "Smith", "Course1"));//"2,Eq2,50,2"
+        expectedStudents.add(new ProjectStudent(2, 1, "John", "Smith", "Course1"));
         Project expectedProject = new Project(2, "Proj2", expectedEquipments, expectedStudents);
 
         assertProjectEquals(expectedProject, eq);
@@ -114,7 +114,7 @@ public class ProjectsTests {
         service.deleteProject(1);
 
         DataSetFileTestHelper.assertFileContentIs(ioService, dataStorage.getProjects().getTodayFileName(), new String[]{
-                ProjectItem.Header,
+                ProjectItem.HEADER,
                 "2,Proj2",
                 "3,Proj3"
         });

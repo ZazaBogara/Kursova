@@ -1,6 +1,6 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
-import com.java.zakhar.IOService.IIoService;
+import com.java.zakhar.ioservice.IIoService;
 
 public class StudentsDataSet extends DataSet<StudentItem> {
     public StudentsDataSet(IIoService ioService) {

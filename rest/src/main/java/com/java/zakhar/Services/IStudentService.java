@@ -1,6 +1,6 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.Services.DataObject.Student;
+import com.java.zakhar.services.dataobject.Student;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
 import lombok.*;
 
@@ -6,7 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class ProjectItem extends DataItem {
-    public static final String Header = "ID,Name";
+    public static final String HEADER = "ID,Name";
 
     @Setter(AccessLevel.PROTECTED)
     private String name;
@@ -19,7 +19,7 @@ public class ProjectItem extends DataItem {
 
     @Override
     public String getCSVHeader() {
-        return Header;
+        return HEADER;
     }
 
     @Override

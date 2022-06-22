@@ -1,4 +1,4 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
 import lombok.*;
 

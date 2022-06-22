@@ -1,9 +1,10 @@
-package com.java.zakhar.Controllers;
+package com.java.zakhar.controllers;
 
 
-import com.java.zakhar.Services.DataObject.Student;
-import com.java.zakhar.Services.IStudentService;
-import com.java.zakhar.Services.InvalidEntityIdException;
+import com.java.zakhar.services.IStudentService;
+import com.java.zakhar.services.InvalidEntityIdException;
+import com.java.zakhar.services.dataobject.Student;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,40 +13,36 @@ import java.util.List;
 public class StudentController {
     private final IStudentService service;
 
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public StudentController(IStudentService service) {
         this.service = service;
     }
 
-    // Aggregate root
-    // tag::get-aggregate-root[]
     @GetMapping("/students")
-    List<Student> all() {
+    public List<Student> all() {
         return service.getStudents();
     }
-    // end::get-aggregate-root[]
 
     @PostMapping("/students")
-    Student addStudent(@RequestBody Student newStudent) throws Exception {
+    public Student addStudent(@RequestBody Student newStudent) throws Exception {
         int id = service.addStudent(newStudent);
         return service.getStudent(id);
     }
 
-    // Single item
-
     @GetMapping("/students/{id}")
-    Student one(@PathVariable int id) throws InvalidEntityIdException {
+    public Student one(@PathVariable int id) throws InvalidEntityIdException {
         return service.getStudent(id);
     }
 
     @PutMapping("/students/{id}")
-    Student replaceStudent(@RequestBody Student newStudent, @PathVariable int id) throws Exception {
+    public Student replaceStudent(@RequestBody Student newStudent, @PathVariable int id) throws Exception {
         newStudent.setID(id);
         service.updateStudent(newStudent);
         return service.getStudent(id);
     }
 
     @DeleteMapping("/students/{id}")
-    void deleteStudent(@PathVariable int id) throws Exception {
+    public void deleteStudent(@PathVariable int id) throws Exception {
         service.deleteStudent(id);
     }
 }

@@ -1,14 +1,16 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
-import com.java.zakhar.IOService.IIoService;
+import com.java.zakhar.ioservice.IIoService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+@SuppressFBWarnings("EI_EXPOSE_REP")
 public class DataStorage implements IDataStorage {
 
-    final private EquipmentsDataSet equipments;
-    final private ProjectsDataSet projects;
-    final private StudentsDataSet students;
-    final private ProjectEquipmentsDataSet projectEquipments;
-    final private StudentProjectsDataSet studentProjects;
+    private final EquipmentsDataSet equipments;
+    private final ProjectsDataSet projects;
+    private final StudentsDataSet students;
+    private final ProjectEquipmentsDataSet projectEquipments;
+    private final StudentProjectsDataSet studentProjects;
 
 
     public DataStorage(IIoService ioService) {

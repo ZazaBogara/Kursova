@@ -1,4 +1,4 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 import com.java.zakhar.helpers.InMemIoService;
@@ -11,7 +11,6 @@ public class ProjectTests {
     @Test
     void test_SaveItem() throws Exception {
         InMemIoService ioService = new InMemIoService();
-        // Create item
         ProjectsDataSet projects = new ProjectsDataSet(ioService);
         ProjectItem project = new ProjectItem(1, "TestName");
         projects.setItem(project);
@@ -19,7 +18,7 @@ public class ProjectTests {
 
         String fileName = projects.getTodayFileName();
         DataSetFileTestHelper.assertFileContentIs(ioService, fileName, new String[]{
-                ProjectItem.Header,
+                ProjectItem.HEADER,
                 "1,TestName"
         });
     }
@@ -28,7 +27,7 @@ public class ProjectTests {
     void test_LoadItem() throws Exception {
         InMemIoService ioService = new InMemIoService();
         String fileName = new ProjectsDataSet(ioService).getTodayFileName();
-        DataSetFileTestHelper.createFile(ioService, fileName, ProjectItem.Header, new String[]{
+        DataSetFileTestHelper.createFile(ioService, fileName, ProjectItem.HEADER, new String[]{
                 "2,TestName"
         });
 
@@ -43,7 +42,7 @@ public class ProjectTests {
     void test_DeleteItem() throws Exception {
         InMemIoService ioService = new InMemIoService();
         String fileName = new ProjectsDataSet(ioService).getTodayFileName();
-        DataSetFileTestHelper.createFile(ioService, fileName, ProjectItem.Header, new String[]{
+        DataSetFileTestHelper.createFile(ioService, fileName, ProjectItem.HEADER, new String[]{
                 "3,TestName"
         });
 
@@ -54,7 +53,7 @@ public class ProjectTests {
         projects.save();
 
         DataSetFileTestHelper.assertFileContentIs(ioService, fileName, new String[]{
-                ProjectItem.Header
+                ProjectItem.HEADER
         });
     }
 
@@ -64,14 +63,12 @@ public class ProjectTests {
         int id;
         ProjectItem project1;
         {
-            // Create item
             ProjectsDataSet projects = new ProjectsDataSet(ioService);
             id = projects.getNewID();
             project1 = new ProjectItem(1, "TestName");
             projects.setItem(project1);
             projects.save();
         }
-        //
         {
             ProjectsDataSet projects = new ProjectsDataSet(ioService);
             projects.load();

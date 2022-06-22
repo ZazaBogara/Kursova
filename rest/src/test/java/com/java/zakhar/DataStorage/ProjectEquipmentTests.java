@@ -1,4 +1,4 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 import com.java.zakhar.helpers.InMemIoService;
@@ -11,7 +11,6 @@ public class ProjectEquipmentTests {
     @Test
     void test_SaveItem() throws Exception {
         InMemIoService ioService = new InMemIoService();
-        // Create item
         ProjectEquipmentsDataSet projectEquipments = new ProjectEquipmentsDataSet(ioService);
         ProjectEquipmentItem projectEquipment = new ProjectEquipmentItem(1, 1, 1, 3);
         projectEquipments.setItem(projectEquipment);
@@ -66,14 +65,12 @@ public class ProjectEquipmentTests {
         int id;
         ProjectItem project1;
         {
-            // Create item
             ProjectsDataSet projects = new ProjectsDataSet(ioService);
             id = projects.getNewID();
             project1 = new ProjectItem(1, "TestName");
             projects.setItem(project1);
             projects.save();
         }
-        //
         {
             ProjectsDataSet projects = new ProjectsDataSet(ioService);
             projects.load();

@@ -1,4 +1,4 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
 public class InvalidEntityIdException extends Exception {
 

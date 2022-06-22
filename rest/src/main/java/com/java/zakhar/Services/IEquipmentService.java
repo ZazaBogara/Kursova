@@ -1,7 +1,7 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
 
-import com.java.zakhar.Services.DataObject.Equipment;
+import com.java.zakhar.services.dataobject.Equipment;
 
 import java.util.List;
 

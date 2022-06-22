@@ -1,4 +1,4 @@
-package com.java.zakhar.Services.DataObject;
+package com.java.zakhar.services.dataobject;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
