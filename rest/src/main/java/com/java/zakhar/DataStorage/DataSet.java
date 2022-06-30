@@ -1,6 +1,6 @@
-package com.java.zakhar.DataStorage;
+package com.java.zakhar.datastorage;
 
-import com.java.zakhar.IOService.IIoService;
+import com.java.zakhar.ioservice.IIoService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.HashMap;
 
 public abstract class DataSet<T extends DataItem> {
-    final private String entityName;
-    final private IIoService ioService;
-    final private HashMap<Integer, T> items = new HashMap<>();
+    private final String entityName;
+    private final IIoService ioService;
+    private final HashMap<Integer, T> items = new HashMap<>();
 
     private String fileName;
     private int lastId;
@@ -43,12 +43,11 @@ public abstract class DataSet<T extends DataItem> {
     private void loadFile(String fileName) throws Exception {
         try (BufferedReader br = ioService.openFile(fileName)) {
             String line;
-            br.readLine(); // Skip Header
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 T item = createItem();
                 item.fromCSVString(line);
                 setItem(item);
-                //
                 if (lastId < item.getId())
                     lastId = item.getId();
             }

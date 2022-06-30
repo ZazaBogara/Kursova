@@ -1,4 +1,4 @@
-package com.java.zakhar.IOService;
+package com.java.zakhar.ioservice;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -6,7 +6,7 @@ import java.nio.file.FileSystemException;
 import java.nio.file.Path;
 
 public class FileSystemIoService implements IIoService {
-    final private String storageDirectory;
+    private final String storageDirectory;
 
     public FileSystemIoService(String storageDirectory) {
         this.storageDirectory = storageDirectory;
@@ -21,8 +21,7 @@ public class FileSystemIoService implements IIoService {
             fileNames = new String[files.length];
             for (int i = 0; i < files.length; i++)
                 fileNames[i] = files[i].getName();
-        }
-        else {
+        } else {
             fileNames = new String[0];
         }
 

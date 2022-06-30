@@ -1,7 +1,7 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.DataStorage.*;
-import com.java.zakhar.IOService.IIoService;
+import com.java.zakhar.datastorage.*;
+import com.java.zakhar.ioservice.IIoService;
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 
 public class ServicesTestDataHelper {
@@ -27,7 +27,7 @@ public class ServicesTestDataHelper {
     }
 
     private static void CreateProjectsTestFile(IIoService ioService, ProjectsDataSet dataSet) throws Exception {
-        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), ProjectItem.Header, new String[]{
+        DataSetFileTestHelper.createFile(ioService, dataSet.getTodayFileName(), ProjectItem.HEADER, new String[]{
                 "1,Proj1",
                 "2,Proj2",
                 "3,Proj3"

@@ -1,11 +1,11 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.DataStorage.EquipmentItem;
-import com.java.zakhar.DataStorage.IDataStorage;
-import com.java.zakhar.DataStorage.ProjectEquipmentItem;
-import com.java.zakhar.IOService.IIoService;
-import com.java.zakhar.Services.DataObject.Equipment;
-import com.java.zakhar.Services.DataObject.EquipmentProject;
+import com.java.zakhar.datastorage.EquipmentItem;
+import com.java.zakhar.datastorage.IDataStorage;
+import com.java.zakhar.datastorage.ProjectEquipmentItem;
+import com.java.zakhar.ioservice.IIoService;
+import com.java.zakhar.services.dataobject.Equipment;
+import com.java.zakhar.services.dataobject.EquipmentProject;
 import com.java.zakhar.helpers.DataSetFileTestHelper;
 import com.java.zakhar.helpers.InMemIoService;
 import org.junit.jupiter.api.Test;

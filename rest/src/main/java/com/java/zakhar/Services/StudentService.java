@@ -1,11 +1,11 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.DataStorage.IDataStorage;
-import com.java.zakhar.DataStorage.ProjectItem;
-import com.java.zakhar.DataStorage.StudentItem;
-import com.java.zakhar.DataStorage.StudentProjectItem;
-import com.java.zakhar.Services.DataObject.Student;
-import com.java.zakhar.Services.DataObject.StudentProject;
+import com.java.zakhar.datastorage.IDataStorage;
+import com.java.zakhar.datastorage.ProjectItem;
+import com.java.zakhar.datastorage.StudentItem;
+import com.java.zakhar.datastorage.StudentProjectItem;
+import com.java.zakhar.services.dataobject.Student;
+import com.java.zakhar.services.dataobject.StudentProject;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @AllArgsConstructor
 public class StudentService implements IStudentService {
-    IDataStorage dataStorage;
+    private IDataStorage dataStorage;
 
 
     private List<StudentProject> loadStudentProjects(int studentID) {
@@ -56,7 +56,6 @@ public class StudentService implements IStudentService {
 
 
     private void updateStudentProjects(int studentID, List<StudentProject> projects) throws IOException {
-        // get existing projects
         HashMap<Integer, StudentProjectItem> existingProjects = new HashMap<>();
         for (StudentProjectItem studentProjectItem : dataStorage.getStudentProjects().getItems()) {
             if (studentProjectItem.getStudentID() == studentID) {
@@ -64,7 +63,6 @@ public class StudentService implements IStudentService {
             }
         }
         boolean wasModified = false;
-        // update projects
         for (StudentProject proj : projects) {
             StudentProjectItem existingItem = existingProjects.get(proj.getID());
             if (existingItem != null) {
@@ -78,12 +76,10 @@ public class StudentService implements IStudentService {
                 wasModified = true;
             }
         }
-        // remove unused
         for (StudentProjectItem studentProjectItem : existingProjects.values()) {
             dataStorage.getStudentProjects().deleteItem(studentProjectItem.getId());
             wasModified = true;
         }
-        //
         if (wasModified)
             dataStorage.getStudentProjects().save();
 

@@ -1,10 +1,10 @@
-package com.java.zakhar.App;
+package com.java.zakhar.app;
 
-import com.java.zakhar.DataStorage.DataStorage;
-import com.java.zakhar.DataStorage.IDataStorage;
-import com.java.zakhar.IOService.FileSystemIoService;
-import com.java.zakhar.IOService.IIoService;
-import com.java.zakhar.Services.*;
+import com.java.zakhar.datastorage.DataStorage;
+import com.java.zakhar.datastorage.IDataStorage;
+import com.java.zakhar.ioservice.FileSystemIoService;
+import com.java.zakhar.ioservice.IIoService;
+import com.java.zakhar.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,11 +1,11 @@
-package com.java.zakhar.Services;
+package com.java.zakhar.services;
 
-import com.java.zakhar.DataStorage.EquipmentItem;
-import com.java.zakhar.DataStorage.IDataStorage;
-import com.java.zakhar.DataStorage.ProjectEquipmentItem;
-import com.java.zakhar.DataStorage.ProjectItem;
-import com.java.zakhar.Services.DataObject.Equipment;
-import com.java.zakhar.Services.DataObject.EquipmentProject;
+import com.java.zakhar.datastorage.EquipmentItem;
+import com.java.zakhar.datastorage.IDataStorage;
+import com.java.zakhar.datastorage.ProjectEquipmentItem;
+import com.java.zakhar.datastorage.ProjectItem;
+import com.java.zakhar.services.dataobject.Equipment;
+import com.java.zakhar.services.dataobject.EquipmentProject;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
@@ -53,7 +53,6 @@ public class EquipmentService implements IEquipmentService {
     }
 
     private void updateEquipmentProjects(int equipmentID, List<EquipmentProject> projects) throws IOException {
-        // get existing projects
         HashMap<Integer, ProjectEquipmentItem> existingProjects = new HashMap<>();
         for (ProjectEquipmentItem projectEquipmentItem : dataStorage.getProjectEquipments().getItems()) {
             if (projectEquipmentItem.getEquipmentID() == equipmentID) {
@@ -61,7 +60,6 @@ public class EquipmentService implements IEquipmentService {
             }
         }
         boolean wasModified = false;
-        // update projects
         for (EquipmentProject proj : projects) {
             ProjectEquipmentItem existingItem = existingProjects.get(proj.getID());
             if (existingItem != null) {
@@ -75,12 +73,10 @@ public class EquipmentService implements IEquipmentService {
                 wasModified = true;
             }
         }
-        // remove unused
         for (ProjectEquipmentItem projectEquipmentItem : existingProjects.values()) {
             dataStorage.getProjectEquipments().deleteItem(projectEquipmentItem.getId());
             wasModified = true;
         }
-        //
         if (wasModified)
             dataStorage.getProjectEquipments().save();
     }

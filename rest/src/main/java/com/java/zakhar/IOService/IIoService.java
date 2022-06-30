@@ -1,7 +1,6 @@
-package com.java.zakhar.IOService;
+package com.java.zakhar.ioservice;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 
